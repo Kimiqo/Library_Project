@@ -1,0 +1,206 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --border-btn: 2px solid rgb(36, 36, 36);
+    --color-base-bg: rgb(240, 240, 240);
+    --color-base-text: rgb(18, 18, 18);
+    --header-bg: rgba(26, 106, 7, 0.521);
+}
+
+:root.dark {
+    --border-btn: 2px solid rgb(220, 220, 220);
+    --color-base-bg: rgb(18, 18, 18);
+    --color-base-text: rgb(240, 240, 240);
+    --color-btn-bg: rgb(36, 36, 36);
+    --header-bg: rgba(26, 106, 7, 0.521);
+}
+  
+:root.light {
+    --border-btn: 2px solid rgb(36, 36, 36);
+    --color-base-bg: rgb(240, 240, 240);
+    --color-base-text: rgb(18, 18, 18);
+    --color-btn-bg: rgb(220, 220, 220);
+    --header-bg: rgba(26, 106, 7, 0.521);
+}
+  
+body{
+    background-color: var(--color-base-bg);
+    color: var(--color-base-text);
+}
+
+.container{
+    display: grid;
+    grid-template-rows: 1.5fr 13fr 1fr;
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    background-color: var(--header-bg);
+    color: white;
+    display: grid;
+    grid-template-columns: 7fr 1fr;
+    align-items: center;
+    margin: 0;
+    padding-left: 10px;
+    /* position: sticky;
+    top: 0;
+    z-index: 999; */
+}
+
+.theme-toggle{
+    height: 40px;
+    border-radius: 20px;
+    color: var(--color-base-bg);
+    background-color: var(--color-base-text);
+}
+
+.theme-toggle:hover {
+    cursor: pointer;
+}
+
+.contents{
+    background-color: var(--color-base-bg);
+    display: grid;
+    grid-template: 50px 1fr/ 7fr 1.5fr;
+
+    overflow: visible;
+}
+
+#books{
+    grid-row: 2/3;
+    grid-column: 1/2;
+    display: grid;
+    gap: 45px;
+    grid-template: repeat(auto-fit, 220px) / repeat(auto-fit, 220px);
+    color: var(--color-base-text);
+    background-color: var(--header-bg);
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+#book{
+    padding-left: 10px;
+}
+
+svg{
+    width: 35px;
+    fill: var(--color-base-text);
+}
+
+#books>div{
+    border: var(--border-btn);
+ }
+
+#stats{
+    grid-row: 1/3;
+    border-left: 2px solid black;
+    text-align: center;
+    display: grid;
+    grid-template-rows: 1fr 80px;
+}
+
+#addBtn>button{
+    background-color: red;
+    color: white;
+    width: 150px;
+    height: 40px;
+    border-radius: 15px;
+    border: 0;
+}
+
+#addBtn>button:hover{
+    background-color: green;
+}
+
+#dialogForm{
+    background-color: var(--color-base-bg);
+    color: var(--color-base-text);
+    text-align: left;
+    border-radius: 15px;
+    border: 0;
+    padding: 25px;
+    font-size: 20px;
+}
+
+input{
+    margin-bottom: 5px;
+}
+
+::backdrop {
+    background-image: linear-gradient(
+      45deg,
+      magenta,
+      rebeccapurple,
+      dodgerblue,
+      green
+    );
+    opacity: 0.55;
+}
+
+/*   Open state of the dialog  */
+dialog[open] {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  
+  /*   Closed state of the dialog   */
+  dialog {
+    opacity: 0;
+    transform: scaleY(0);
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.7s ease-out,
+      overlay 0.7s ease-out allow-discrete,
+      display 0.7s ease-out allow-discrete;
+    /* Equivalent to
+    transition: all 0.7s allow-discrete; */
+  }
+  
+  /*   Before-open state  */
+  /* Needs to be after the previous dialog[open] rule to take effect,
+      as the specificity is the same */
+  @starting-style {
+    dialog[open] {
+      opacity: 0;
+      transform: scaleY(0);
+    }
+  }
+  
+  /* Transition the :backdrop when the dialog modal is promoted to the top layer */
+  dialog::backdrop {
+    background-color: rgb(0 0 0 / 0%);
+    transition:
+      display 0.7s allow-discrete,
+      overlay 0.7s allow-discrete,
+      background-color 0.7s;
+    /* Equivalent to
+    transition: all 0.7s allow-discrete; */
+  }
+  
+  dialog[open]::backdrop {
+    background-color: rgb(0 0 0 / 25%);
+  }
+  
+  /* This starting-style rule cannot be nested inside the above selector
+  because the nesting selector cannot represent pseudo-elements. */
+  
+  @starting-style {
+    dialog[open]::backdrop {
+      background-color: rgb(0 0 0 / 0%);
+    }
+  }
+  
+
+.footer{
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--color-base-bg);
+    background-color: var(--color-base-text);
+    border: 1px solid black;
+}
