@@ -82,13 +82,13 @@ body{
     padding-top: 20px;
 }
 
-#book{
+.book{
     padding-left: 10px;
 }
 
 svg{
     width: 35px;
-    fill: var(--color-base-text);
+    fill: red;
 }
 
 #books>div{
