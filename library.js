@@ -1,5 +1,6 @@
+
 // Theme selector
-function setTheme(){
+function setTheme() {
   const root = document.documentElement;
   const theme = root.className === 'dark' ? 'light' : 'dark';
   root.className = theme;
@@ -69,9 +70,16 @@ cancelBtn.addEventListener('click', (event) => {
 
 confirmBtn.addEventListener('click', (event) => {
   event.preventDefault();
-  addBookToLibrary();
-  dialog.close(); // Close dialog
-  mainForm.reset(); // Reset form
+  if (mainForm.checkValidity()) {
+    alert("Form is valid");
+    addBookToLibrary();
+    dialog.close(); // Close dialog
+    mainForm.reset(); // Reset form
+  } else {
+    alert("Form is invalid");
+    dialog.close(); // Close dialog
+    mainForm.reset(); // Reset form
+  }
 });
 
 function updateStats() {
